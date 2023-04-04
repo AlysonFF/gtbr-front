@@ -5,8 +5,6 @@ import {useEffect} from "react";
 
 const centralize = {display: "flex", justifyContent: "center"}
 
-
-
 let user = {
     username: "",
     password: "",
@@ -14,6 +12,13 @@ let user = {
 }
 
 export const Login = () => {
+
+    let { applicationId } = useParams()
+
+    useEffect(() => {
+        user.application = applicationId
+        },
+        [applicationId])
 
     const setUsername = (event) => {
         user.username = event.target.value
