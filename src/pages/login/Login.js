@@ -129,7 +129,7 @@ export const Login = () => {
                                         para prosseguir com seu login digite-o abaixo</p>
 
                                     <FloatingLabel label={'Codigo'}>
-                                        <Form.Control type={"text"} className={'mb-2'} placeholder={'code'}
+                                        <Form.Control type={"number"} className={'mb-2'} placeholder={'code'}
                                                       defaultValue={''}
                                                       onChange={setCode}/>
                                     </FloatingLabel>
