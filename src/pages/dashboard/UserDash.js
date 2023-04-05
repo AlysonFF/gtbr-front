@@ -9,44 +9,7 @@ const badgeStatusColor = {
     setup: 'info'
 }
 
-let userList = [
-    {
-        "id": "bf5ee70a-23ea-46d4-9037-fb6276a69ac9",
-        "name": "Kima",
-        "discordTag": "discord#tag",
-        "status": {
-            "id": "ACTIVE"
-        },
-        "role": []
-    },
-    {
-        "id": "f5f3753f-ec57-4c32-baad-c111934e6f54",
-        "name": "Tata",
-        "discordTag": "discord#tag",
-        "status": {
-            "id": "SUSPENDED"
-        },
-        "role": []
-    },
-    {
-        "id": "4722ecd9-cd2c-46f7-84f0-faa1021469ac",
-        "name": "Luquinhas",
-        "discordTag": "discord#tag",
-        "status": {
-            "id": "BANNED"
-        },
-        "role": []
-    },
-    {
-        "id": "a9a203c5-641d-4845-9321-6ace6e8ca07e",
-        "name": "Thalles",
-        "discordTag": "discord#tag",
-        "status": {
-            "id": "SETUP"
-        },
-        "role": []
-    }
-]
+let userList = []
 
 export const UserDash = () => {
 
@@ -125,7 +88,7 @@ export const UserDash = () => {
                                                         <Row>
                                                             <Col lg={10}>
                                                                 <strong className={'text-white'}>{user.name}</strong>&nbsp;
-                                                                <small className={'text-secondary'}>{user.discordTag}</small>
+                                                                <small className={'text-secondary'}>@ {user.discordTag}</small>
                                                                 <br/>
                                                                 <Badge bg={badgeStatusColor[user.status.id.toLowerCase()]}>
                                                                     {user.status.id}

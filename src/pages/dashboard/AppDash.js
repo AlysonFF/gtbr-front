@@ -8,9 +8,6 @@ let applicationList = [
 let applicationName = ""
 let applicationUrl = ""
 
-
-
-
 export const AppDash = () => {
 
     const fetchApplication = () => {
