@@ -2,6 +2,7 @@ import {Button, Card, FloatingLabel, Form, Image, Row} from "react-bootstrap";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
+import {ReactNotifications, Store} from "react-notifications-component";
 
 const centralize = {display: "flex", justifyContent: "center"}
 
@@ -44,7 +45,21 @@ export const Login = () => {
                 code: code
             }
         }).then(response => {
-            console.log(`${response.data.applicationUrl}?auth=${response.data.token}`)
+            window.location.href = `${response.data.applicationUrl}?auth=${response.data.token}`
+        }).catch(reason => {
+            Store.addNotification({
+                title: "Algo deu errado",
+                message: reason.response.data,
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    onScreen: true
+                }
+            })
         })
     }
 
@@ -53,6 +68,20 @@ export const Login = () => {
             params: user
         }).then(response => {
             setMfaId(response.data.mfaToken)
+        }).catch(reason => {
+            Store.addNotification({
+                title: "Algo deu errado",
+                message: reason.response.data,
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    onScreen: true
+                }
+            })
         })
     }
 
@@ -66,7 +95,8 @@ export const Login = () => {
                                 <Card.Body>
                                     <div className={'mt-2 mb-4'}
                                          style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                        <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'50%'} width={'50%'}></Image>
+                                        <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'50%'}
+                                               width={'50%'}></Image>
                                     </div>
 
                                     <FloatingLabel label={'Login'}>
@@ -80,32 +110,38 @@ export const Login = () => {
                                 </Card.Body>
                                 <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                                     <Button variant={'outline-light'} className={'col-11 align-content-center mb-4'}
-                                            size={'lg'} onClick={authenticate}>{`Login to ${applicationId === undefined ? 'dashboard' : applicationId}`}</Button>
+                                            size={'lg'}
+                                            onClick={authenticate}>{`Login to ${applicationId === undefined ? 'dashboard' : applicationId}`}</Button>
 
                                 </div>
                             </div> : <div>
-                                        <Card.Body>
-                                            <div className={'mt-2 mb-4'}
-                                                 style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                                <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'50%'} width={'50%'}></Image>
-                                            </div>
-                                            <p className={'text-white text-center'}>Um codigo foi enviado para o seu discord, para prosseguir com seu login digite-o abaixo</p>
+                                <Card.Body>
+                                    <div className={'mt-2 mb-4'}
+                                         style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                        <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'50%'}
+                                               width={'50%'}></Image>
+                                    </div>
+                                    <p className={'text-white text-center'}>Um codigo foi enviado para o seu discord,
+                                        para prosseguir com seu login digite-o abaixo</p>
 
-                                            <FloatingLabel label={'Codigo'}>
-                                                <Form.Control type={"text"} className={'mb-2'} placeholder={'code'} defaultValue={''}
-                                                              onChange={setCode}/>
-                                            </FloatingLabel>
-                                        </Card.Body>
-                                        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                            <Button variant={'outline-light'} className={'col-11 align-content-center mb-4'}
-                                                    size={'lg'} onClick={mfaAuth}>{`Confirmar codigo`}</Button>
+                                    <FloatingLabel label={'Codigo'}>
+                                        <Form.Control type={"text"} className={'mb-2'} placeholder={'code'}
+                                                      defaultValue={''}
+                                                      onChange={setCode}/>
+                                    </FloatingLabel>
+                                </Card.Body>
+                                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                    <Button variant={'outline-light'} className={'col-11 align-content-center mb-4'}
+                                            size={'lg'} onClick={mfaAuth}>{`Confirmar codigo`}</Button>
 
-                                        </div>
-                                </div>}
-</Card>
-</div>
-</Row>
-</div>
-)
+                                </div>
+                            </div>
+                        }
+                    </Card>
+                </div>
+            </Row>
+            <ReactNotifications />
+        </div>
+    )
 
 }
