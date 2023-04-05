@@ -1,4 +1,4 @@
-import {Badge, Button, Card, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
+import {Badge, Button, Card, Col, Container, FloatingLabel, Form, InputGroup, Row, Modal} from "react-bootstrap";
 import {useState} from "react";
 import axios from "axios";
 
@@ -12,6 +12,10 @@ const badgeStatusColor = {
 let userList = []
 
 export const UserDash = () => {
+
+        const [show, setShow] = useState(false);
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(true);
 
     const fetchUsers = () => {
         axios.get(`http://localhost:8080/user`)
@@ -86,13 +90,18 @@ export const UserDash = () => {
                                                 <Card className={'super-dark-mode-card'}>
                                                     <Card.Body>
                                                         <Row>
-                                                            <Col lg={10}>
+                                                            <Col lg={8}>
                                                                 <strong className={'text-white'}>{user.name}</strong>&nbsp;
                                                                 <small className={'text-secondary'}>@ {user.discordTag}</small>
                                                                 <br/>
                                                                 <Badge bg={badgeStatusColor[user.status.id.toLowerCase()]}>
                                                                     {user.status.id}
                                                                 </Badge>
+                                                            </Col>
+                                                            <Col lg={2} className={'justify-content-end'}>
+                                                                <Button id={user.id} onClick={deleteUser} variant={'info'}>
+                                                                    <span className="material-symbols-rounded text-white">edit_note</span>
+                                                                </Button>
                                                             </Col>
                                                             <Col lg={2} className={'justify-content-end'}>
                                                                 <Button id={user.id} onClick={deleteUser} variant={'danger'}>
