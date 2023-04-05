@@ -2,6 +2,7 @@ import './App.css';
 import {Login} from "./pages/login/Login";
 import 'bootstrap/dist/css/bootstrap.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {RequireAuth} from "./security/RequireAuth";
 import {Dashboard} from "./pages/dashboard/Dashboard";
 
 const router = createBrowserRouter ([
@@ -15,7 +16,7 @@ const router = createBrowserRouter ([
   },
   {
     path:'/dashboard',
-    element: <Dashboard></Dashboard>
+    element:  <RequireAuth element={<Dashboard/>}></RequireAuth>
   }
 ])
 
