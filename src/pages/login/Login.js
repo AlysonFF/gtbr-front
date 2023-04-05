@@ -4,6 +4,10 @@ import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {ReactNotifications, Store} from "react-notifications-component";
 
+
+
+
+
 const centralize = {display: "flex", justifyContent: "center"}
 
 let code = ''
@@ -16,9 +20,9 @@ let user = {
 
 export const Login = () => {
 
+
     let {applicationId} = useParams()
     const navigate = useNavigate()
-
     const [mfaId, setMfaId] = useState('')
 
     useEffect(() => {
@@ -125,7 +129,7 @@ export const Login = () => {
                                         para prosseguir com seu login digite-o abaixo</p>
 
                                     <FloatingLabel label={'Codigo'}>
-                                        <Form.Control type={"text"} className={'mb-2'} placeholder={'code'}
+                                        <Form.Control type={"number"} className={'mb-2'} placeholder={'code'}
                                                       defaultValue={''}
                                                       onChange={setCode}/>
                                     </FloatingLabel>
