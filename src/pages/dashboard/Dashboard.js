@@ -4,16 +4,23 @@ import {UserDash} from "./UserDash";
 import {AppDash} from "./AppDash";
 import {RoleDash} from "./RoleDash";
 import {StatusDash} from "./StatusDash";
+import {useNavigate} from "react-router";
 
 const pages = {
     user: "USER",
     role: "ROLE",
     status: "STATUS",
-    application: "APP"
+    application: "APP",
+    exit: "EXIT",
 }
 
 export const Dashboard = () => {
     const [page, setPage] = useState(pages.user)
+    const navigate = useNavigate()
+
+    const exit = () => {
+        navigate('/')
+    }
 
     const changePage = (event) => {
         setPage(pages[event.target.id])
@@ -30,6 +37,8 @@ export const Dashboard = () => {
                             <Nav.Link><Button variant={'outline-light'} id={'role'} onClick={changePage}>Role</Button></Nav.Link>
                             <Nav.Link><Button variant={'outline-light'} id={'status'} onClick={changePage}>Status</Button></Nav.Link>
                             <Nav.Link><Button variant={'outline-light'} id={'application'} onClick={changePage}>Application</Button></Nav.Link>
+                            <Nav className={'ms-auto'}>
+                                <Nav.Link><Button variant={'outline-light'} id={'exit'} onClick={exit}>Exit</Button></Nav.Link></Nav>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
