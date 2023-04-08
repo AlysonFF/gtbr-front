@@ -58,3 +58,7 @@ input[type=number] {
 .btn-info {
   background-color: #198754 !important;
 }
+
+.modal-content {
+  background-color: #23272A !important;
+}

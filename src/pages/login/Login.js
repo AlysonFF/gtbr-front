@@ -4,10 +4,6 @@ import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {ReactNotifications, Store} from "react-notifications-component";
 
-
-
-
-
 const centralize = {display: "flex", justifyContent: "center"}
 
 let code = ''
@@ -19,7 +15,6 @@ let user = {
 }
 
 export const Login = () => {
-
 
     let {applicationId} = useParams()
     const navigate = useNavigate()
