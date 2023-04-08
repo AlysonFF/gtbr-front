@@ -59,6 +59,18 @@ input[type=number] {
   background-color: #198754 !important;
 }
 
+#exit {
+  margin-left: 78vh;
+
+}
+
+#exit:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+
 .modal-content {
   background-color: #23272A !important;
 }
