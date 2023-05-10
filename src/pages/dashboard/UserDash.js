@@ -75,7 +75,12 @@ export const UserDash = () => {
     }
 
     const sendUser = () => {
-
+        axios.post(`http://localhost:8080/user`, {
+            name: newUser.name,
+            discordTag: newUser.discordTag
+        }).then(response => {
+            fetchUsers()
+        })
     }
 
     const deleteUser = () => {

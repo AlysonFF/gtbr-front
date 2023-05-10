@@ -46,19 +46,6 @@ export const Login = () => {
         }).then(response => {
             window.location.href = `${response.data.applicationUrl}?auth=${response.data.token}`
         }).catch(reason => {
-            Store.addNotification({
-                title: "Algo deu errado",
-                message: reason.response.data,
-                type: "danger",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    onScreen: true
-                }
-            })
         })
     }
 
@@ -66,21 +53,12 @@ export const Login = () => {
         axios.get(`http://localhost:8080/auth`, {
             params: user
         }).then(response => {
-            setMfaId(response.data.mfaToken)
+            if(response.data.status === "SETUP") {
+                navigate("/setup")
+            }
+            else
+                setMfaId(response.data.mfaToken)
         }).catch(reason => {
-            Store.addNotification({
-                title: "Algo deu errado",
-                message: reason.response.data,
-                type: "danger",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    onScreen: true
-                }
-            })
         })
     }
 

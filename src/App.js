@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RequireAuth} from "./security/RequireAuth";
 import {Dashboard} from "./pages/dashboard/Dashboard";
+import {Setup} from "./pages/setup/Setup";
 
 const router = createBrowserRouter ([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter ([
   {
     path:'/:applicationId',
     element: <Login></Login>
+  },
+  {
+    path:'/setup',
+    element: <Setup></Setup>
   },
   {
     path:'/dashboard',
