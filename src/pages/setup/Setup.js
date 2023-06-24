@@ -1,6 +1,6 @@
 import {Button, Card, FloatingLabel, Form, Image, Row} from "react-bootstrap";
 import axios from "axios";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {ReactNotifications, Store} from "react-notifications-component";
 import {useSearchParams} from "react-router-dom";
@@ -20,6 +20,8 @@ export const Setup = () => {
     user.id = searchParams.get('id');
     user.dId = searchParams.get('dId');
     const [validate, setValidate] = useState('')
+
+    const navigate = useNavigate()
 
     const validatePassword = () => {
         setValidate(user.passwordConfirmation === user.password ? 'is-valid' : 'is-invalid')
@@ -60,6 +62,10 @@ export const Setup = () => {
                         onScreen: true
                     }
                 })
+                setTimeout(()=>{
+                    navigate("/")
+                },5001)
+
             }).catch(reason => {
                 Store.addNotification({
                     title: "Algo deu errado",
