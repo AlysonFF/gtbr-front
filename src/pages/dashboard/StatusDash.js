@@ -13,7 +13,7 @@ let statusName = ""
 export const StatusDash = () => {
 
     const fetchStatus = () => {
-        axios.get(`http://localhost:8080/status`)
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/status`)
             .then(response => {
                 statusList = response.data
                 setStatus(statusList)
@@ -22,7 +22,7 @@ export const StatusDash = () => {
 
     const createStatus = (event) => {
         if (statusName !== ""){
-            axios.post(`http://localhost:8080/status`, {
+            axios.post(`${process.env.REACT_APP_GTBR_AUTH}/status`, {
                 id: statusName
             }).then(response => {
                 fetchStatus()
@@ -31,7 +31,7 @@ export const StatusDash = () => {
     }
 
     const deleteStatus = (event) => {
-        axios.delete(`http://localhost:8080/status`, {
+        axios.delete(`${process.env.REACT_APP_GTBR_AUTH}/status`, {
             params: {
                 id: event.target.id
             }

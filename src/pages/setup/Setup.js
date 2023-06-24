@@ -42,7 +42,7 @@ export const Setup = () => {
         if (validate === 'is-valid') {
             const userData = `${user.id}:${user.dId}:${user.password}`;
             const basic = `Data ${btoa(userData)}`
-            axios.get(`http://localhost:8080/user/password`, {
+            axios.get(`${process.env.REACT_APP_GTBR_AUTH}/user/password`, {
                 headers: {
                     Authorization: basic
                 }

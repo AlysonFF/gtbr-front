@@ -8,7 +8,7 @@ export function RequireAuth(props) {
     const queryToken = searchParams.get('auth')
 
     const validateToken = () => {
-        axios.get(`http://localhost:8080/auth/validate`, {
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/auth/validate`, {
             params: {
                 token: queryToken
             }

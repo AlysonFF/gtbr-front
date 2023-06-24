@@ -12,7 +12,7 @@ export const RoleDash = () => {
 
 
     const fetchRole = () => {
-        axios.get(`http://localhost:8080/role`)
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/role`)
             .then(response => {
                 roleList = response.data
                 setRole(roleList)
@@ -21,7 +21,7 @@ export const RoleDash = () => {
 
     const createRole = (event) => {
         if (roleName !== ""){
-            axios.post(`http://localhost:8080/role`, {
+            axios.post(`${process.env.REACT_APP_GTBR_AUTH}/role`, {
                 id: roleName
             }).then(response => {
                 fetchRole()
@@ -30,7 +30,7 @@ export const RoleDash = () => {
     }
 
     const deleteRole = (event) => {
-        axios.delete(`http://localhost:8080/role`, {
+        axios.delete(`${process.env.REACT_APP_GTBR_AUTH}/role`, {
             params: {
                 id: event.target.id
             }

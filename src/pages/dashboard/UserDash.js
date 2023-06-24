@@ -43,18 +43,18 @@ export const UserDash = () => {
     const handleShow = () => setShow(true);
 
     const fetchUsers = () => {
-        axios.get(`http://localhost:8080/user`)
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/user`)
             .then(response => {
-                axios.get(`http://localhost:8080/status`).then(response => statusList = response.data)
-                axios.get(`http://localhost:8080/application`).then(response => applicationList = response.data)
-                axios.get(`http://localhost:8080/role`).then(response => roleList = response.data)
+                axios.get(`${process.env.REACT_APP_GTBR_AUTH}/status`).then(response => statusList = response.data)
+                axios.get(`${process.env.REACT_APP_GTBR_AUTH}/application`).then(response => applicationList = response.data)
+                axios.get(`${process.env.REACT_APP_GTBR_AUTH}/role`).then(response => roleList = response.data)
                 userList = response.data
                 setUsers(response.data)
             })
     }
 
     const fetchUser = (userId) => {
-        axios.get(`http://localhost:8080/user/id`, {
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/user/id`, {
             params: {
                 id: userId
             }
@@ -75,7 +75,7 @@ export const UserDash = () => {
     }
 
     const sendUser = () => {
-        axios.post(`http://localhost:8080/user`, {
+        axios.post(`${process.env.REACT_APP_GTBR_AUTH}/user`, {
             name: newUser.name,
             discordTag: newUser.discordTag
         }).then(response => {
@@ -104,7 +104,7 @@ export const UserDash = () => {
     }
 
     const addRoleToUser = (event) => {
-        axios.put(`http://localhost:8080/user/role`, {}, {
+        axios.put(`${process.env.REACT_APP_GTBR_AUTH}/user/role`, {}, {
             params: {
                 userId: selectedUser.id,
                 roleId: event.target.id
@@ -116,7 +116,7 @@ export const UserDash = () => {
     }
 
     const removeRoleToUser = (event) => {
-        axios.delete(`http://localhost:8080/user/role`, {
+        axios.delete(`${process.env.REACT_APP_GTBR_AUTH}/user/role`, {
             params: {
                 userId: selectedUser.id,
                 roleId: event.target.id
@@ -128,7 +128,7 @@ export const UserDash = () => {
     }
 
     const addApplicationToUser = (event) => {
-        axios.put(`http://localhost:8080/user/application`, {}, {
+        axios.put(`${process.env.REACT_APP_GTBR_AUTH}/user/application`, {}, {
             params: {
                 userId: selectedUser.id,
                 applicationId: event.target.id
@@ -141,7 +141,7 @@ export const UserDash = () => {
     }
 
     const removeApplicationToUser = (event) => {
-        axios.delete(`http://localhost:8080/user/application`, {
+        axios.delete(`${process.env.REACT_APP_GTBR_AUTH}/user/application`, {
             params: {
                 userId: selectedUser.id,
                 applicationId: event.target.id

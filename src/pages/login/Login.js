@@ -38,7 +38,7 @@ export const Login = () => {
     }
 
     const mfaAuth = (event) => {
-        axios.get(`http://localhost:8080/auth/mfa`, {
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/auth/mfa`, {
             params: {
                 mfaId: mfaId,
                 code: code
@@ -50,7 +50,7 @@ export const Login = () => {
     }
 
     const authenticate = (event) => {
-        axios.get(`http://localhost:8080/auth`, {
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/auth`, {
             params: user
         }).then(response => {
             if(response.data.status === "SETUP") {

@@ -11,7 +11,7 @@ let applicationUrl = ""
 export const AppDash = () => {
 
     const fetchApplication = () => {
-        axios.get(`http://localhost:8080/application`)
+        axios.get(`${process.env.REACT_APP_GTBR_AUTH}/application`)
             .then(response => {
                 applicationList = response.data
                 setApplication(applicationList)
@@ -20,7 +20,7 @@ export const AppDash = () => {
 
     const createApplication = (event) => {
         if (applicationName !== "" || applicationUrl !== "") {
-            axios.post(`http://localhost:8080/application`, {
+            axios.post(`${process.env.REACT_APP_GTBR_AUTH}/application`, {
                 id: applicationName,
                 url: applicationUrl,
             }) .then(response => {
@@ -30,7 +30,7 @@ export const AppDash = () => {
     }
 
     const deleteApplication = (event) => {
-        axios.delete(`http://localhost:8080/application`,{
+        axios.delete(`${process.env.REACT_APP_GTBR_AUTH}/application`,{
             params:{
                 id: event.target.id
             }
