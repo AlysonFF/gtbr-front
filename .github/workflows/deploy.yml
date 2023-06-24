@@ -28,4 +28,4 @@ jobs:
           docker stop gtbr-auth-front || true
           docker rm gtbr-auth-front || true
           docker pull gtbr/gtbr-auth-front
-          docker run -d -p 8081:3000 -e DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} -e SETUP_URL=${{ secrets.SETUP_URL }} --name gtbr-auth-front gtbr/gtbr-auth-front
+          docker run -d -p 8081:3000 --name gtbr-auth-front gtbr/gtbr-auth-front
