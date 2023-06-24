@@ -1,0 +1,31 @@
+name: Deploy on GTBR Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and Push Image
+      run: |
+        docker build -t gtbr-auth-front .
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker tag gtbr-auth-front gtbr/gtbr-auth-front
+        docker push gtbr/gtbr-auth-front
+
+    - name: Deploy to GTBR Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        script: |
+          docker stop gtbr-auth-front || true
+          docker rm gtbr-auth-front || true
+          docker pull gtbr/gtbr-auth-front
+          docker run -d -p 8083:3000 --name gtbr-auth-front gtbr/gtbr-auth-front
