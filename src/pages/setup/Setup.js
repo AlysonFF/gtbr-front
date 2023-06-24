@@ -1,9 +1,11 @@
 import {Button, Card, FloatingLabel, Form, Image, Row} from "react-bootstrap";
 import axios from "axios";
-import {useNavigate, useParams} from "react-router";
-import {useEffect, useState} from "react";
-import {ReactNotifications, Store} from "react-notifications-component";
+import {useNavigate} from "react-router";
+import {useState} from "react";
 import {useSearchParams} from "react-router-dom";
+import {createNotification} from "../../utils/Notification";
+import {NotificationManager} from "react-notifications";
+import NotificationContainer from "react-notifications/lib/NotificationContainer";
 
 const centralize = {display: "flex", justifyContent: "center"}
 
@@ -49,37 +51,13 @@ export const Setup = () => {
                     Authorization: basic
                 }
             }).then(response => {
-                Store.addNotification({
-                    title: "Senha criada",
-                    message: 'Sua senha foi criada com sucesso, seu acesso as aplicacoes foram liberados.',
-                    type: "success",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__fadeIn"],
-                    animationOut: ["animate__animated", "animate__fadeOut"],
-                    dismiss: {
-                        duration: 5000,
-                        onScreen: true
-                    }
-                })
-                setTimeout(()=>{
+                createNotification('success', 'Senha criada', 'Sua senha foi criada com sucesso, seu acesso as aplicacoes foram liberados.')
+                setTimeout(() => {
                     navigate("/")
-                },5001)
+                }, 5001)
 
             }).catch(reason => {
-                Store.addNotification({
-                    title: "Algo deu errado",
-                    message: reason.response.data,
-                    type: "danger",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__fadeIn"],
-                    animationOut: ["animate__animated", "animate__fadeOut"],
-                    dismiss: {
-                        duration: 5000,
-                        onScreen: true
-                    }
-                })
+                createNotification('error', 'Algo deu errado', reason.response.data)
             })
         }
 
@@ -124,7 +102,7 @@ export const Setup = () => {
                     </Card>
                 </div>
             </Row>
-            <ReactNotifications/>
+            <NotificationContainer/>
         </div>
     )
 

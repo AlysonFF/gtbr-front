@@ -1,4 +1,4 @@
-import {Button, Card, Container, Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Button, Container, Image, Nav, Navbar} from "react-bootstrap";
 import {useState} from "react";
 import {UserDash} from "./UserDash";
 import {AppDash} from "./AppDash";
@@ -30,15 +30,21 @@ export const Dashboard = () => {
         <div>
             <Navbar bg={'dark'} sticky={'top'} variant={'dark'} expand={'lg'}>
                 <Container>
-                    <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'8%'} width={'8%'} className={'me-5'}></Image>
+                    <Image src={'https://i.imgur.com/sN0aAjU.png'} height={'8%'} width={'8%'}
+                           className={'me-5'}></Image>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link><Button variant={'outline-light'} id={'user'} onClick={changePage}>User</Button></Nav.Link>
-                            <Nav.Link><Button variant={'outline-light'} id={'role'} onClick={changePage}>Role</Button></Nav.Link>
-                            <Nav.Link><Button variant={'outline-light'} id={'status'} onClick={changePage}>Status</Button></Nav.Link>
-                            <Nav.Link><Button variant={'outline-light'} id={'application'} onClick={changePage}>Application</Button></Nav.Link>
+                            <Nav.Link><Button variant={'outline-light'} id={'user'}
+                                              onClick={changePage}>User</Button></Nav.Link>
+                            <Nav.Link><Button variant={'outline-light'} id={'role'}
+                                              onClick={changePage}>Role</Button></Nav.Link>
+                            <Nav.Link><Button variant={'outline-light'} id={'status'}
+                                              onClick={changePage}>Status</Button></Nav.Link>
+                            <Nav.Link><Button variant={'outline-light'} id={'application'}
+                                              onClick={changePage}>Application</Button></Nav.Link>
                             <Nav className={'ms-auto'}>
-                                <Nav.Link><Button variant={'outline-light'} id={'exit'} onClick={exit}>Exit</Button></Nav.Link></Nav>
+                                <Nav.Link><Button variant={'outline-light'} id={'exit'}
+                                                  onClick={exit}>Exit</Button></Nav.Link></Nav>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

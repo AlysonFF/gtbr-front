@@ -1,10 +1,12 @@
 import './App.css';
-import {Login} from "./pages/login/Login";
 import 'bootstrap/dist/css/bootstrap.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RequireAuth} from "./security/RequireAuth";
 import {Dashboard} from "./pages/dashboard/Dashboard";
 import {Setup} from "./pages/setup/Setup";
+import {Login} from "./pages/login/Login";
+import 'react-notifications/lib/notifications.css';
+
 
 const router = createBrowserRouter ([
   {

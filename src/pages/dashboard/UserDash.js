@@ -1,7 +1,8 @@
 import {Badge, Button, Card, Col, Container, FloatingLabel, Form, InputGroup, Modal, Row} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {ReactNotifications, Store} from "react-notifications-component";
+import {createNotification} from "../../utils/Notification";
+import NotificationContainer from "react-notifications/lib/NotificationContainer";
 
 const badgeStatusColor = {
     active: 'success',
@@ -88,19 +89,7 @@ export const UserDash = () => {
     }
 
     const sendNotification = (title, message, type) => {
-        Store.addNotification({
-            title: title,
-            message: message,
-            type: type,
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000,
-                onScreen: true
-            }
-        })
+        createNotification(type, title, message)
     }
 
     const addRoleToUser = (event) => {
@@ -295,13 +284,15 @@ export const UserDash = () => {
                                                                 </Col>
                                                                 <Col lg={3} className={'justify-content-end'}>
                                                                     {selectedUser.role.find(role => role.id === roleItem) !== undefined ? (
-                                                                        <Button size={'sm'} id={roleItem} onClick={removeRoleToUser}
+                                                                        <Button size={'sm'} id={roleItem}
+                                                                                onClick={removeRoleToUser}
                                                                                 variant={'danger'}>
                                                                             <span id={roleItem}
                                                                                   className={"material-symbols-rounded"}>link_off</span>
                                                                         </Button>
                                                                     ) : (
-                                                                        <Button size={'sm'} id={roleItem} onClick={addRoleToUser}
+                                                                        <Button size={'sm'} id={roleItem}
+                                                                                onClick={addRoleToUser}
                                                                                 variant={'success'}>
                                                                             <span id={roleItem}
                                                                                   className={"material-symbols-rounded"}>add_link</span>
@@ -370,7 +361,7 @@ export const UserDash = () => {
                     </Container>
                 </Modal.Body>
             </Modal>
-            <ReactNotifications/>
+            <NotificationContainer/>
         </Container>
     )
 }
